@@ -7,18 +7,18 @@ function SalespersonList({ onSalespersonSelect }) {
       <h2>Salespeople</h2>
       <ul>
         <ListItem
-          name="John Doe"
-          color="Red"
+          name="John Appleseed"
+          id="0"
           onButtonClick={onSalespersonSelect}
         />
         <ListItem
-          name="Steve Jobs"
-          color="Blue"
+          name="Brett Rich"
+          id="1"
           onButtonClick={onSalespersonSelect}
         />
         <ListItem
-          name="Mike Scott"
-          color="Orange"
+          name="Marvin Jones"
+          id="2"
           onButtonClick={onSalespersonSelect}
         />
       </ul>

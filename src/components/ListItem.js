@@ -1,6 +1,6 @@
 import React from "react";
 
-function ListItem({ name, color, onButtonClick }) {
+function ListItem({ name, id, onButtonClick }) {
   //function handleClick(colorSelected) {
   //console.log("Handling click: ", colorSelected);
   //}
@@ -9,7 +9,7 @@ function ListItem({ name, color, onButtonClick }) {
     <li>
       <div>
         <label>{name}: </label>
-        <button onClick={() => onButtonClick(color)}>{color}</button>
+        <button onClick={() => onButtonClick(id)}>Click to Select</button>
       </div>
     </li>
   );

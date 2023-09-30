@@ -1,15 +1,22 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { AppContext } from "../data/AppContext";
 import "./County.css";
 
-function County({ countyName, d, fillColor }) {
+function County({ d, countyName, onCountySelect }) {
   const [color, setColor] = useState("#d0d0d0");
+  const currentContext = useContext(AppContext);
 
   let fillStyle = {
     fill: color,
   };
 
   function handleClick() {
-    if (fillColor !== undefined) setColor(fillColor);
+    if (currentContext.currentId !== undefined) {
+      setColor(
+        currentContext.assignmentMap[currentContext.currentId].countyColor
+      );
+      onCountySelect(countyName);
+    }
   }
 
   return (
@@ -18,7 +25,6 @@ function County({ countyName, d, fillColor }) {
       style={fillStyle}
       d={d}
       id={countyName}
-      inkscapeConnector-curvature="0"
       onClick={handleClick}
     />
   );
