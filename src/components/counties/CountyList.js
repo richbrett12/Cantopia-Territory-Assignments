@@ -1,9 +1,8 @@
 import React from "react";
 import County from "./County";
 import { CountySvgData } from "../data/CountySvgData";
-
 function CountyList({ onCountySelect }) {
-  const OhioSvgPaths = CountySvgData.map((element) => {
+  const OhioSvgPaths = CountySvgData.map((element, index) => {
     return (
       <County
         countyName={element.County}

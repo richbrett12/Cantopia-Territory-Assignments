@@ -1,20 +1,32 @@
 import { createContext } from "react";
+import { CountySvgData } from "./CountySvgData";
 
 const colors = ["Blue", "Red", "Orange", "Yellow", "Purple", "Green"];
-const salespersonObj = function (id, color) {
+
+const salespersonObject = function (id, color) {
   const salespersonId = id;
   const countyColor = color;
-  const counties = [];
-  return { salespersonId, countyColor, counties };
+  return { salespersonId, countyColor };
 };
 
-const AppContextArray = colors.map((color, index) =>
-  salespersonObj(index, color)
+const countyAssignmentDictionary = function (county, id) {
+  const countyName = county;
+  const salespersonId = id;
+  return { countyName, salespersonId };
+};
+
+const salespersonList = colors.map((color, index) =>
+  salespersonObject(index, color)
 );
 
-export const AppContextObj = {
-  currentId: undefined,
-  assignmentMap: AppContextArray,
+const countyAssignmentList = CountySvgData.map((county) =>
+  countyAssignmentDictionary(county.County, undefined)
+);
+
+export const AppContextObject = {
+  selectedSalesperson: undefined,
+  countyAssignment: countyAssignmentList,
+  salespeople: salespersonList,
 };
 
-export const AppContext = createContext();
+export const AppContextNew = createContext();

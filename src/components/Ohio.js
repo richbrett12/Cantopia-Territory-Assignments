@@ -15,7 +15,7 @@ const OhioSvg = ({ onCountySelect }) => {
         width="45.029999"
         height="50.889999"
         transform="scale(16)"
-        viewBox="-30 10 100 30"
+        viewBox="-10 25 100 30"
         preserveAspectRatio="xMidYMid meet"
       >
         <defs id="defs3087" />

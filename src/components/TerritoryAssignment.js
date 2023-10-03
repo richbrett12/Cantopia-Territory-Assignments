@@ -1,81 +1,85 @@
 import React, { useState } from "react";
 import OhioSvg from "./Ohio";
 import SalespersonList from "./SalespersonList";
-import { AppContext, AppContextObj } from "./data/AppContext";
+import { AppContextNew, AppContextObject } from "./data/AppContext";
+import { sampleCountyAssignment, sampleSalespeople } from "./data/SampleData";
 
 function TerritoryAssignment() {
   const mainStyles = {
     padding: "25px",
   };
-
-  //const [currentColor, setCurrentColor] = useState();
-  const [currentState, setCurrentState] = useState(AppContextObj);
-  //const [mapState, setMapState] = useState(OhioSvgData);
+  const [currentState, setCurrentState] = useState(AppContextObject);
 
   function handleSalespersonSelect(id) {
     let updatedState = {
-      currentId: id,
-      assignmentMap: currentState.assignmentMap.slice(),
+      selectedSalesperson: id,
+      countyAssignment: currentState.countyAssignment.slice(),
+      salespeople: currentState.salespeople.slice(),
     };
+
     setCurrentState(updatedState);
-    console.log(currentState.currentId);
   }
 
   function handleCountySelect(countyName) {
-    let updatedState = {
-      currentId: currentState.currentId,
-      assignmentMap: currentState.assignmentMap.slice(),
-    };
-    updatedState.assignmentMap[currentState.currentId].counties.push(
-      countyName
+    let countyIndex = currentState.countyAssignment.findIndex(
+      (x) => x.countyName === countyName
     );
+
+    let updatedState = {
+      selectedSalesperson: currentState.selectedSalesperson,
+      countyAssignment: currentState.countyAssignment.slice(),
+      salespeople: currentState.salespeople.slice(),
+    };
+
+    updatedState.countyAssignment[countyIndex].salespersonId =
+      currentState.selectedSalesperson;
+
     setCurrentState(updatedState);
   }
 
+  function sampleFill() {
+    let sampleCountyAssign = Array.from(sampleCountyAssignment);
+    let sampleFill = {
+      selectedSalesperson: undefined,
+      countyAssignment: sampleCountyAssign,
+      salespeople: currentState.salespeople.slice(),
+    };
+    setCurrentState(sampleFill);
+  }
+
+  const contextTrackerList = sampleSalespeople.map((person, index) => {
+    return (
+      <li>
+        Id: {index}. <br />
+        Color: {currentState.salespeople[index].countyColor}
+      </li>
+    );
+  });
+  const contextTrackerCountyList = currentState.countyAssignment.map(
+    (county) => {
+      return <li>{county.countyName + ": " + county.salespersonId}</li>;
+    }
+  );
+
   return (
-    <AppContext.Provider value={currentState}>
+    <AppContextNew.Provider value={currentState}>
       <div style={mainStyles}>
         <h1>Cantopia Territory Assignment</h1>
-        <h4>
-          Selected Salesperson:{" "}
-          {currentState.currentId !== undefined
-            ? currentState.currentId
-            : "None"}
-        </h4>
         <SalespersonList onSalespersonSelect={handleSalespersonSelect} />
+        <button onClick={sampleFill}>Sample Fill</button>
         <OhioSvg onCountySelect={handleCountySelect} />
       </div>
-      <div>
-        <h5>Context Tracker</h5>
-        <ul>
-          <li>
-            Id: 0. <br />
-            Color: {currentState.assignmentMap[0].countyColor} <br />
-            Counties: {currentState.assignmentMap[0].counties.toString()}
-          </li>
-          <li>
-            Id: 1. <br />
-            Color: {currentState.assignmentMap[1].countyColor} <br />
-            Counties: {currentState.assignmentMap[1].counties.toString()}
-          </li>
-          <li>
-            Id: 2. <br />
-            Color: {currentState.assignmentMap[2].countyColor} <br />
-            Counties: {currentState.assignmentMap[2].counties.toString()}
-          </li>
-          <li>
-            Id: 3. <br />
-            Color: {currentState.assignmentMap[3].countyColor} <br />
-            Counties: {currentState.assignmentMap[3].counties.toString()}
-          </li>
-          <li>
-            Id: 4. <br />
-            Color: {currentState.assignmentMap[4].countyColor} <br />
-            Counties: {currentState.assignmentMap[4].counties.toString()}
-          </li>
-        </ul>
+      <div style={mainStyles}>
+        <label>
+          Context Tracker
+          <br />
+          Selected Salesperson Id: {currentState.selectedSalesperson}
+        </label>
+        <ul>{contextTrackerList}</ul>
+        <label>CountyAssignmentDictionary:</label>
+        <ul>{contextTrackerCountyList}</ul>
       </div>
-    </AppContext.Provider>
+    </AppContextNew.Provider>
   );
 }
 
