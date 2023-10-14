@@ -14,9 +14,8 @@ const OhioSvg = ({ onCountySelect }) => {
         xmlns="http://www.w3.org/2000/svg"
         width="45.029999"
         height="50.889999"
-        transform="scale(16)"
+        transform="scale(16) rotate(5)"
         viewBox="-10 25 100 30"
-        preserveAspectRatio="xMidYMid meet"
       >
         <defs id="defs3087" />
         <CountyList onCountySelect={onCountySelect} />

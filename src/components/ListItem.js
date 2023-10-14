@@ -3,7 +3,7 @@ import { AppContextNew } from "./data/AppContext";
 
 function ListItem({ name, id, onButtonClick }) {
   const currentContext = useContext(AppContextNew);
-  let color = currentContext.salespeople[id].countyColor;
+  let color = currentContext.salespeople[id];
   let mainStyles = {
     width: "300px",
     padding: "3px",

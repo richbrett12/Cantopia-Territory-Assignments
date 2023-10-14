@@ -1,32 +1,49 @@
 import { createContext } from "react";
 import { CountySvgData } from "./CountySvgData";
 
-const colors = ["Blue", "Red", "Orange", "Yellow", "Purple", "Green"];
+const colors = [
+  "#d0d0d0",
+  "Blue",
+  "Red",
+  "Orange",
+  "Yellow",
+  "Purple",
+  "Green",
+];
 
-const salespersonObject = function (id, color) {
-  const salespersonId = id;
-  const countyColor = color;
-  return { salespersonId, countyColor };
-};
-
-const countyAssignmentDictionary = function (county, id) {
-  const countyName = county;
-  const salespersonId = id;
-  return { countyName, salespersonId };
-};
-
-const salespersonList = colors.map((color, index) =>
-  salespersonObject(index, color)
+const countyAssignmentList = CountySvgData.reduce(
+  (acc, county) => ({ ...acc, [county.County]: 0 }),
+  {}
 );
 
-const countyAssignmentList = CountySvgData.map((county) =>
-  countyAssignmentDictionary(county.County, undefined)
+const salespersonList = colors.reduce(
+  (acc, color, currentIndex) => ({
+    ...acc,
+    [currentIndex]: color,
+  }),
+  {}
+);
+
+export const populationData = CountySvgData.reduce(
+  (acc, county) => ({
+    ...acc,
+    [county.County]: Math.ceil(county.population / 20000),
+  }),
+  {}
+);
+const shopCountList = colors.reduce(
+  (acc, color, currentIndex) => ({
+    ...acc,
+    [currentIndex]: 0,
+  }),
+  {}
 );
 
 export const AppContextObject = {
-  selectedSalesperson: undefined,
+  selectedSalesperson: 0,
   countyAssignment: countyAssignmentList,
   salespeople: salespersonList,
+  shopCount: shopCountList,
 };
 
 export const AppContextNew = createContext();

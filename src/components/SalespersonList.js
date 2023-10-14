@@ -11,7 +11,11 @@ function SalespersonList({ onSalespersonSelect }) {
   };
   const salespeopleList = sampleSalespeople.map((name, index) => {
     return (
-      <ListItem name={name} id={index} onButtonClick={onSalespersonSelect} />
+      <ListItem
+        name={name}
+        id={index + 1}
+        onButtonClick={onSalespersonSelect}
+      />
     );
   });
 

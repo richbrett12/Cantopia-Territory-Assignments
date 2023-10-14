@@ -6,15 +6,13 @@ function County({ d, countyName, onCountySelect }) {
   const currentContext = useContext(AppContextNew);
   const [color, setColor] = useState("#d0d0d0");
 
-  let assignment = currentContext.countyAssignment.find(
-    (x) => x.countyName === countyName
-  ).salespersonId;
+  let assignment = currentContext.countyAssignment[countyName];
 
   if (
     assignment !== undefined &&
-    color !== currentContext.salespeople[assignment].countyColor
+    color !== currentContext.salespeople[assignment]
   ) {
-    setColor(currentContext.salespeople[assignment].countyColor);
+    setColor(currentContext.salespeople[assignment]);
   }
 
   let fillStyle = {
@@ -23,10 +21,7 @@ function County({ d, countyName, onCountySelect }) {
 
   function handleClick() {
     if (currentContext.selectedSalesperson !== undefined) {
-      setColor(
-        currentContext.salespeople[currentContext.selectedSalesperson]
-          .countyColor
-      );
+      setColor(currentContext.salespeople[currentContext.selectedSalesperson]);
       onCountySelect(countyName);
     }
   }
