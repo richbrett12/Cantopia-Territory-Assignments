@@ -7,11 +7,13 @@ import {
   populationData,
 } from "./data/AppContext";
 import contextReducer from "./data/ContextReducer";
-//import { sampleCountyAssignment, sampleSalespeople } from "./data/SampleData";
 
 function TerritoryAssignment() {
   const mainStyles = {
     padding: "25px",
+  };
+  const btnStyles = {
+    margin: "2px 10px",
   };
   const [currentState, dispatch] = useReducer(contextReducer, AppContextObject);
 
@@ -29,6 +31,19 @@ function TerritoryAssignment() {
     });
   }
 
+  function handleClear(id) {
+    if (id) {
+      dispatch({
+        type: "clearSelectedSalesperson",
+        idToClear: id,
+      });
+    } else {
+      dispatch({
+        type: "clearAllAssignments",
+      });
+    }
+  }
+
   function handleRandomFill() {
     dispatch({
       type: "randomFill",
@@ -44,10 +59,29 @@ function TerritoryAssignment() {
     <AppContextNew.Provider value={currentState}>
       <div style={mainStyles}>
         <h1>Cantopia Territory Assignment</h1>
-        <SalespersonList onSalespersonSelect={handleSalespersonSelect} />
-        <button onClick={handleRandomFill}>Sample Fill</button>
-        <button onClick={deselectSalesperson}>Deselect</button>
         <OhioSvg onCountySelect={handleCountySelect} />
+        <SalespersonList onSalespersonSelect={handleSalespersonSelect} />
+        <h5>Actions</h5>
+        <button style={btnStyles} onClick={() => handleClear()}>
+          Clear All
+        </button>
+        <button style={btnStyles} onClick={handleRandomFill}>
+          Sample Fill
+        </button>
+        <br />
+        {currentState.selectedSalesperson !== 0 && (
+          <div>
+            <button
+              style={btnStyles}
+              onClick={() => handleClear(currentState.selectedSalesperson)}
+            >
+              Clear Selected
+            </button>
+            <button style={btnStyles} onClick={deselectSalesperson}>
+              Deselect
+            </button>
+          </div>
+        )}
       </div>
       <div style={mainStyles}>
         <h4>Context Tracker</h4>
@@ -59,8 +93,6 @@ function TerritoryAssignment() {
         {JSON.stringify(currentState.countyAssignment, null, 5)}
         <h5>Salespeople ID and Colors</h5>
         {JSON.stringify(currentState.salespeople, null, 5)}
-        <h5>Salespeople ID and Shop Count</h5>
-        {JSON.stringify(currentState.shopCount, null, 5)}
       </div>
     </AppContextNew.Provider>
   );

@@ -4,7 +4,7 @@ import { AppContextNew } from "./data/AppContext";
 function ListItem({ name, id, onButtonClick }) {
   const currentContext = useContext(AppContextNew);
   let color = currentContext.salespeople[id];
-  let mainStyles = {
+  const mainStyles = {
     width: "300px",
     padding: "3px",
     fontWeight: "normal",
@@ -15,6 +15,12 @@ function ListItem({ name, id, onButtonClick }) {
     height: "18px",
   };
 
+  const shopCountStyles = {
+    padding: "0px 10px",
+    fontWeight: "bold",
+    float: "right",
+  };
+
   if (currentContext.selectedSalesperson === id) {
     mainStyles.fontWeight = "bold";
   }
@@ -23,7 +29,11 @@ function ListItem({ name, id, onButtonClick }) {
     <li>
       <div style={mainStyles} onClick={() => onButtonClick(id)}>
         <button style={buttonStyles} />
-        <label> {name} </label>
+        <label>
+          {" "}
+          {name}:
+          <div style={shopCountStyles}>{currentContext.shopCount[id]}</div>
+        </label>
       </div>
     </li>
   );

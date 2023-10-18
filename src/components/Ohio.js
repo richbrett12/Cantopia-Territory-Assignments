@@ -3,6 +3,7 @@ import CountyList from "./counties/CountyList";
 
 const OhioSvg = ({ onCountySelect }) => {
   const svgContainer = {
+    height: "0px",
     textAlign: "center",
   };
 
@@ -15,7 +16,7 @@ const OhioSvg = ({ onCountySelect }) => {
         width="45.029999"
         height="50.889999"
         transform="scale(16) rotate(5)"
-        viewBox="-10 25 100 30"
+        viewBox="-10 0 100 10"
       >
         <defs id="defs3087" />
         <CountyList onCountySelect={onCountySelect} />

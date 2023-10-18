@@ -13,57 +13,72 @@ export default function contextReducer(context, action) {
       };
     }
     case "countySelect": {
-      // let oldSalesperson = context.countyAssignment[action.countyName];
-      // if (oldSalesperson !== 0) {
-      //   updateSalepersonShopCount(context, oldSalesperson);
-      // }
-
-      //Need to figure out how to keep the Shop Count for each Salesperson ID
-      // Currently Adds correctly, but doesn't subtract anything
-
+      updateShopCount(
+        action.countyName,
+        context.countyAssignment[action.countyName],
+        context.selectedSalesperson
+      );
       context.countyAssignment[action.countyName] = context.selectedSalesperson;
-      updateSalepersonShopCount(context, context.selectedSalesperson);
 
-      // context.salespeople.forEach((element, index) => {
-      //   if (index > 0) {
-      //     updateSalepersonShopCount(context, index);
-      //   }
-      // });
-      // if (context.selectedSalesperson !== 0) {
-      //   updateSalepersonShopCount(context, context.selectedSalesperson);
-      // }
+      return returnContextObject();
+    }
+    case "clearSelectedSalesperson": {
+      CountySvgData.forEach((x) => {
+        if (context.countyAssignment[x.County] === action.idToClear) {
+          updateShopCount(x.County, context.countyAssignment[x.County], 0);
+          context.countyAssignment[x.County] = 0;
+        }
+      });
 
-      return {
-        selectedSalesperson: context.selectedSalesperson,
-        countyAssignment: context.countyAssignment,
-        salespeople: context.salespeople,
-        shopCount: context.shopCount,
-      };
+      return returnContextObject();
+    }
+    case "clearAllAssignments": {
+      CountySvgData.forEach((x) => {
+        if (context.countyAssignment[x.County] !== 0) {
+          updateShopCount(x.County, context.countyAssignment[x.County], 0);
+          context.countyAssignment[x.County] = 0;
+        }
+      });
+
+      return returnContextObject();
     }
     case "randomFill": {
-      //let test = Math.floor(Math.random() * 5) + 1;
       sampleCountyAssignment.forEach((x) => {
-        context.countyAssignment[x.countyName] = x.salespersonId;
+        if (context.countyAssignment[x.countyName] !== x.salespersonId) {
+          updateShopCount(
+            x.countyName,
+            context.countyAssignment[x.countyName],
+            x.salespersonId
+          );
+          context.countyAssignment[x.countyName] = x.salespersonId;
+        }
       });
-      return {
-        selectedSalesperson: context.selectedSalesperson,
-        countyAssignment: context.countyAssignment,
-        salespeople: context.salespeople,
-        shopCount: context.shopCount,
-      };
+
+      return returnContextObject();
     }
     default: {
       throw Error("Unknown action: " + action.type);
     }
   }
-}
 
-function updateSalepersonShopCount(currentCtxt, idToUpdate) {
-  let shopSum = 0;
-  CountySvgData.forEach((county) => {
-    if (currentCtxt.countyAssignment[county.County] === idToUpdate) {
-      shopSum += populationData[county.County];
+  function updateShopCount(countyName, oldAssignment, currentId) {
+    let oldId = JSON.parse(oldAssignment);
+    if (oldId !== currentId) {
+      if (currentId !== 0) {
+        context.shopCount[currentId] += populationData[countyName];
+      }
+      if (oldId !== 0) {
+        context.shopCount[oldId] -= populationData[countyName];
+      }
     }
-  });
-  currentCtxt.shopCount[idToUpdate] = shopSum;
+  }
+
+  function returnContextObject() {
+    return {
+      selectedSalesperson: context.selectedSalesperson,
+      countyAssignment: context.countyAssignment,
+      salespeople: context.salespeople,
+      shopCount: context.shopCount,
+    };
+  }
 }
