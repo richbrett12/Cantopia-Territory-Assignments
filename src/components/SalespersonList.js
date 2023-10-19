@@ -1,6 +1,6 @@
 import React from "react";
 import ListItem from "./ListItem";
-import { sampleSalespeople } from "./data/SampleData";
+import { sampleSalespeople } from "../data/SampleData";
 
 function SalespersonList({ onSalespersonSelect }) {
   const mainStyles = {
@@ -9,6 +9,7 @@ function SalespersonList({ onSalespersonSelect }) {
     background: "whitesmoke",
     padding: "10px",
   };
+
   const salespeopleList = sampleSalespeople.map((name, index) => {
     return (
       <ListItem
@@ -21,7 +22,7 @@ function SalespersonList({ onSalespersonSelect }) {
 
   return (
     <div>
-      <h5>Select a Salesperson</h5>
+      <h4>Select a Salesperson</h4>
       <ul style={mainStyles}>{salespeopleList}</ul>
     </div>
   );

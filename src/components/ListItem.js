@@ -1,22 +1,22 @@
 import React, { useContext } from "react";
-import { AppContextNew } from "./data/AppContext";
+import { AppContextNew } from "../data/AppContext";
 
 function ListItem({ name, id, onButtonClick }) {
   const currentContext = useContext(AppContextNew);
   let color = currentContext.salespeople[id];
   const mainStyles = {
     width: "300px",
-    padding: "3px",
+    padding: "10px",
+    fontSize: "22px",
     fontWeight: "normal",
   };
 
   const buttonStyles = {
-    backgroundColor: color,
-    height: "18px",
+    fill: color,
   };
 
   const shopCountStyles = {
-    padding: "0px 10px",
+    padding: "0px 16px",
     fontWeight: "bold",
     float: "right",
   };
@@ -28,7 +28,9 @@ function ListItem({ name, id, onButtonClick }) {
   return (
     <li>
       <div style={mainStyles} onClick={() => onButtonClick(id)}>
-        <button style={buttonStyles} />
+        <svg width="20px" height="16px">
+          <rect x="0" y="0" width="100%" height="100%" style={buttonStyles} />
+        </svg>
         <label>
           {" "}
           {name}:

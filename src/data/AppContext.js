@@ -5,10 +5,16 @@ const colors = [
   "#d0d0d0",
   "Blue",
   "Red",
+  "url(#Green-Checker)",
+  "url(#Blue-Checker)",
+  "url(#Red-Checker)",
   "Orange",
   "Yellow",
   "Purple",
   "Green",
+  "url(#Orange-Checker)",
+  "url(#Yellow-Checker)",
+  "url(#Purple-Checker)",
 ];
 
 const countyAssignmentList = CountySvgData.reduce(

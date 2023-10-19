@@ -5,13 +5,14 @@ import {
   AppContextNew,
   AppContextObject,
   populationData,
-} from "./data/AppContext";
-import contextReducer from "./data/ContextReducer";
+} from "../data/AppContext";
+import contextReducer from "../data/ContextReducer";
 
 function TerritoryAssignment() {
   const mainStyles = {
     padding: "25px",
   };
+
   const btnStyles = {
     margin: "2px 10px",
   };
@@ -58,7 +59,6 @@ function TerritoryAssignment() {
   return (
     <AppContextNew.Provider value={currentState}>
       <div style={mainStyles}>
-        <h1>Cantopia Territory Assignment</h1>
         <OhioSvg onCountySelect={handleCountySelect} />
         <SalespersonList onSalespersonSelect={handleSalespersonSelect} />
         <h5>Actions</h5>
