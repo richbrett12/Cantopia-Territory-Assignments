@@ -5,7 +5,10 @@ import { sampleSalespeople } from "../data/SampleData";
 function SalespersonList({ onSalespersonSelect }) {
   const mainStyles = {
     listStyle: "none",
-    width: "300px",
+    width: "350px",
+    maxHeight: "200px",
+    overflow: "hidden",
+    overflowY: "scroll",
     background: "whitesmoke",
     padding: "10px",
   };

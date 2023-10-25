@@ -5,9 +5,9 @@ function ListItem({ name, id, onButtonClick }) {
   const currentContext = useContext(AppContextNew);
   let color = currentContext.salespeople[id];
   const mainStyles = {
-    width: "300px",
+    width: "350px",
     padding: "10px",
-    fontSize: "22px",
+    fontSize: "20px",
     fontWeight: "normal",
   };
 
@@ -28,8 +28,15 @@ function ListItem({ name, id, onButtonClick }) {
   return (
     <li>
       <div style={mainStyles} onClick={() => onButtonClick(id)}>
-        <svg width="20px" height="16px">
-          <rect x="0" y="0" width="100%" height="100%" style={buttonStyles} />
+        <svg width="20px" height="14px" style={{ border: "1px solid black" }}>
+          <rect
+            transform="scale(4.0)"
+            x="0"
+            y="0"
+            width="100%"
+            height="100%"
+            style={buttonStyles}
+          />
         </svg>
         <label>
           {" "}

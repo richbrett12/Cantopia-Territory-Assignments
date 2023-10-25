@@ -2,19 +2,23 @@ import { createContext } from "react";
 import { CountySvgData } from "./CountySvgData";
 
 const colors = [
-  "#d0d0d0",
+  "LightGray",
   "Blue",
   "Red",
-  "url(#Green-Checker)",
+  "Green",
+  "DarkOrange",
+  "Purple",
+  "Gold",
+  "Pink",
+  "LightBlue",
+  "LightGreen",
+  "#383838",
   "url(#Blue-Checker)",
   "url(#Red-Checker)",
-  "Orange",
-  "Yellow",
-  "Purple",
-  "Green",
-  "url(#Orange-Checker)",
-  "url(#Yellow-Checker)",
+  "url(#Green-Checker)",
+  "url(#DarkOrange-Checker)",
   "url(#Purple-Checker)",
+  "url(#Blue-Line)",
 ];
 
 const countyAssignmentList = CountySvgData.reduce(

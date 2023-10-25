@@ -4,6 +4,16 @@ export const sampleSalespeople = [
   "Michael Scott",
   "Nick Miller",
   "Zach Bryan",
+  "Jason Salesman",
+  "Jess Day",
+  "Meredith Palmer",
+  "Pam Beasly",
+  "Larry David",
+  "Peyton Manning",
+  "Christopher Walken",
+  "PK Subban",
+  "Sydney Crosby",
+  "Veronica Corningstone",
 ];
 
 export const sampleCountyAssignment = [

@@ -1,6 +1,7 @@
 import React from "react";
 import CountyList from "./counties/CountyList";
 import CheckerFills from "./CheckerFills";
+import LineFills from "./LineFills";
 
 const OhioSvg = ({ onCountySelect }) => {
   const svgContainer = {
@@ -23,6 +24,7 @@ const OhioSvg = ({ onCountySelect }) => {
       >
         <defs id="defs3087" />
         <CheckerFills />
+        <LineFills />
         <CountyList onCountySelect={onCountySelect} />
       </svg>
     </div>

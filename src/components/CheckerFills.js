@@ -1,8 +1,8 @@
 import React from "react";
 
 function CheckerFills() {
-  let colors = ["Red", "Blue", "Green", "Yellow", "Orange", "Purple"];
-
+  let colors = ["Red", "Blue", "Green", "DarkOrange", "Purple"];
+  let patternSize = "1";
   let patterns = colors.map((color) => {
     let patternId = color + "-Checker";
     return (
@@ -10,12 +10,24 @@ function CheckerFills() {
         id={patternId}
         x="0"
         y="0"
-        width="2"
-        height="2"
+        width={patternSize * 2}
+        height={patternSize * 2}
         patternUnits="userSpaceOnUse"
       >
-        <rect style={{ fill: color }} x="0" width="1" height="1" y="0"></rect>
-        <rect style={{ fill: color }} x="1" width="1" height="1" y="1"></rect>
+        <rect
+          style={{ fill: color }}
+          x="0"
+          width={patternSize}
+          height={patternSize}
+          y="0"
+        ></rect>
+        <rect
+          style={{ fill: color }}
+          x={patternSize}
+          width={patternSize}
+          height={patternSize}
+          y={patternSize}
+        ></rect>
       </pattern>
     );
   });
