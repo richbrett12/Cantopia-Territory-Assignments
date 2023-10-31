@@ -11,3 +11,9 @@
   stroke-dasharray: none;
   marker-start: none;
 }
+
+.county:hover {
+  /* filter: grayscale(100%) sepia(100%); */
+  filter: opacity(65%);
+  stroke-width: 0.2;
+}

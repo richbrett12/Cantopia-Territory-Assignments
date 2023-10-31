@@ -1,6 +1,6 @@
 import { populationData } from "./AppContext";
 import { CountySvgData } from "./CountySvgData";
-import { sampleCountyAssignment } from "./SampleData";
+import { sampleCountyAssignment2 } from "./SampleData";
 
 export default function contextReducer(context, action) {
   switch (action.type) {
@@ -43,7 +43,7 @@ export default function contextReducer(context, action) {
       return returnContextObject();
     }
     case "randomFill": {
-      sampleCountyAssignment.forEach((x) => {
+      sampleCountyAssignment2.forEach((x) => {
         if (context.countyAssignment[x.countyName] !== x.salespersonId) {
           updateShopCount(
             x.countyName,

@@ -23,7 +23,9 @@ function County({ d, countyName, onCountySelect }) {
         d={d}
         id={countyName}
         onClick={handleClick}
-      />
+      >
+        <title>{countyName}</title>
+      </path>
     </svg>
   );
 }

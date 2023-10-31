@@ -14,6 +14,16 @@ export const sampleSalespeople = [
   "PK Subban",
   "Sydney Crosby",
   "Veronica Corningstone",
+  "Marvin Harrison",
+  "Sally Fields",
+  "Joe Dimaggio",
+  "Lee Corso",
+  "Anthony Richardson",
+  "Gardner Minshew",
+  "Kyler Murray",
+  "Kirk Cousins",
+  "Jalen Hurts",
+  "Joe Burrow",
 ];
 
 export const sampleCountyAssignment = [
@@ -368,5 +378,360 @@ export const sampleCountyAssignment = [
   {
     countyName: "Wyandot",
     salespersonId: 5,
+  },
+];
+
+export const sampleCountyAssignment2 = [
+  {
+    countyName: "Adams",
+    salespersonId: 15,
+  },
+  {
+    countyName: "Allen",
+    salespersonId: 5,
+  },
+  {
+    countyName: "Ashland",
+    salespersonId: 9,
+  },
+  {
+    countyName: "Ashtabula",
+    salespersonId: 8,
+  },
+  {
+    countyName: "Athens",
+    salespersonId: 3,
+  },
+  {
+    countyName: "Auglaize",
+    salespersonId: 20,
+  },
+  {
+    countyName: "Belmont",
+    salespersonId: 18,
+  },
+  {
+    countyName: "Brown",
+    salespersonId: 15,
+  },
+  {
+    countyName: "Butler",
+    salespersonId: 17,
+  },
+  {
+    countyName: "Carroll",
+    salespersonId: 19,
+  },
+  {
+    countyName: "Champaign",
+    salespersonId: 4,
+  },
+  {
+    countyName: "Clark",
+    salespersonId: 4,
+  },
+  {
+    countyName: "Clermont",
+    salespersonId: 7,
+  },
+  {
+    countyName: "Clinton",
+    salespersonId: 7,
+  },
+  {
+    countyName: "Columbiana",
+    salespersonId: 16,
+  },
+  {
+    countyName: "Coshocton",
+    salespersonId: 2,
+  },
+  {
+    countyName: "Crawford",
+    salespersonId: 6,
+  },
+  {
+    countyName: "Cuyahoga",
+    salespersonId: 1,
+  },
+  {
+    countyName: "Darke",
+    salespersonId: 12,
+  },
+  {
+    countyName: "Defiance",
+    salespersonId: 13,
+  },
+  {
+    countyName: "Delaware",
+    salespersonId: 10,
+  },
+  {
+    countyName: "Erie",
+    salespersonId: 9,
+  },
+  {
+    countyName: "Fairfield",
+    salespersonId: 10,
+  },
+  {
+    countyName: "Fayette",
+    salespersonId: 4,
+  },
+  {
+    countyName: "Franklin",
+    salespersonId: 10,
+  },
+  {
+    countyName: "Fulton",
+    salespersonId: 13,
+  },
+  {
+    countyName: "Gallia",
+    salespersonId: 25,
+  },
+  {
+    countyName: "Geauga",
+    salespersonId: 8,
+  },
+  {
+    countyName: "Greene",
+    salespersonId: 4,
+  },
+  {
+    countyName: "Guernsey",
+    salespersonId: 23,
+  },
+  {
+    countyName: "Hamilton",
+    salespersonId: 17,
+  },
+  {
+    countyName: "Hancock",
+    salespersonId: 5,
+  },
+  {
+    countyName: "Hardin",
+    salespersonId: 14,
+  },
+  {
+    countyName: "Harrison",
+    salespersonId: 19,
+  },
+  {
+    countyName: "Henry",
+    salespersonId: 13,
+  },
+  {
+    countyName: "Highland",
+    salespersonId: 15,
+  },
+  {
+    countyName: "Hocking",
+    salespersonId: 11,
+  },
+  {
+    countyName: "Holmes",
+    salespersonId: 2,
+  },
+  {
+    countyName: "Huron",
+    salespersonId: 9,
+  },
+  {
+    countyName: "Jackson",
+    salespersonId: 25,
+  },
+  {
+    countyName: "Jefferson",
+    salespersonId: 18,
+  },
+  {
+    countyName: "Knox",
+    salespersonId: 10,
+  },
+  {
+    countyName: "Lake",
+    salespersonId: 8,
+  },
+  {
+    countyName: "Lawrence",
+    salespersonId: 21,
+  },
+  {
+    countyName: "Licking",
+    salespersonId: 10,
+  },
+  {
+    countyName: "Logan",
+    salespersonId: 14,
+  },
+  {
+    countyName: "Lorain",
+    salespersonId: 9,
+  },
+  {
+    countyName: "Lucas",
+    salespersonId: 5,
+  },
+  {
+    countyName: "Madison",
+    salespersonId: 4,
+  },
+  {
+    countyName: "Mahoning",
+    salespersonId: 16,
+  },
+  {
+    countyName: "Marion",
+    salespersonId: 14,
+  },
+  {
+    countyName: "Medina",
+    salespersonId: 1,
+  },
+  {
+    countyName: "Meigs",
+    salespersonId: 3,
+  },
+  {
+    countyName: "Mercer",
+    salespersonId: 20,
+  },
+  {
+    countyName: "Miami",
+    salespersonId: 12,
+  },
+  {
+    countyName: "Monroe",
+    salespersonId: 18,
+  },
+  {
+    countyName: "Montgomery",
+    salespersonId: 22,
+  },
+  {
+    countyName: "Morgan",
+    salespersonId: 3,
+  },
+  {
+    countyName: "Morrow",
+    salespersonId: 10,
+  },
+  {
+    countyName: "Muskingum",
+    salespersonId: 2,
+  },
+  {
+    countyName: "Noble",
+    salespersonId: 23,
+  },
+  {
+    countyName: "Ottawa",
+    salespersonId: 6,
+  },
+  {
+    countyName: "Paulding",
+    salespersonId: 13,
+  },
+  {
+    countyName: "Perry",
+    salespersonId: 2,
+  },
+  {
+    countyName: "Pickaway",
+    salespersonId: 11,
+  },
+  {
+    countyName: "Pike",
+    salespersonId: 25,
+  },
+  {
+    countyName: "Portage",
+    salespersonId: 1,
+  },
+  {
+    countyName: "Preble",
+    salespersonId: 22,
+  },
+  {
+    countyName: "Putnam",
+    salespersonId: 13,
+  },
+  {
+    countyName: "Richland",
+    salespersonId: 9,
+  },
+  {
+    countyName: "Ross",
+    salespersonId: 11,
+  },
+  {
+    countyName: "Sandusky",
+    salespersonId: 6,
+  },
+  {
+    countyName: "Scioto",
+    salespersonId: 21,
+  },
+  {
+    countyName: "Seneca",
+    salespersonId: 6,
+  },
+  {
+    countyName: "Shelby",
+    salespersonId: 20,
+  },
+  {
+    countyName: "Stark",
+    salespersonId: 1,
+  },
+  {
+    countyName: "Summit",
+    salespersonId: 1,
+  },
+  {
+    countyName: "Trumbull",
+    salespersonId: 8,
+  },
+  {
+    countyName: "Tuscarawas",
+    salespersonId: 24,
+  },
+  {
+    countyName: "Union",
+    salespersonId: 14,
+  },
+  {
+    countyName: "Van Wert",
+    salespersonId: 20,
+  },
+  {
+    countyName: "Vinton",
+    salespersonId: 3,
+  },
+  {
+    countyName: "Warren",
+    salespersonId: 22,
+  },
+  {
+    countyName: "Washington",
+    salespersonId: 3,
+  },
+  {
+    countyName: "Wayne",
+    salespersonId: 1,
+  },
+  {
+    countyName: "Williams",
+    salespersonId: 13,
+  },
+  {
+    countyName: "Wood",
+    salespersonId: 5,
+  },
+  {
+    countyName: "Wyandot",
+    salespersonId: 6,
   },
 ];

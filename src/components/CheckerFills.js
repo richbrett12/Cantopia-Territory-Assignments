@@ -1,8 +1,17 @@
 import React from "react";
 
 function CheckerFills() {
-  let colors = ["Red", "Blue", "Green", "DarkOrange", "Purple"];
-  let patternSize = "1";
+  let colors = [
+    "Red",
+    "DarkOrange",
+    "Green",
+    "Blue",
+    "Gold",
+    "#800000",
+    "BlueViolet",
+    "#222831",
+  ];
+  let patternSize = ".5";
   let patterns = colors.map((color) => {
     let patternId = color + "-Checker";
     return (
