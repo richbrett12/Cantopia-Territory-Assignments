@@ -54,8 +54,6 @@ function TerritoryAssignment() {
     handleSalespersonSelect(0);
   }
 
-  console.log(populationData);
-
   return (
     <AppContextNew.Provider value={currentState}>
       <div style={mainStyles}>

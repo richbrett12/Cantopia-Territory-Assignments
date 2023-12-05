@@ -1,7 +1,20 @@
 import React, { useContext } from "react";
+import { populationData } from "../data/AppContext";
 import { AppContextNew } from "../data/AppContext";
 
 function ListItem({ name, id, onButtonClick }) {
+  function getShopCount() {
+    let sum = 0;
+    for (const [key, value] of Object.entries(
+      currentContext.countyAssignment
+    )) {
+      if (value === id) {
+        sum += populationData[key];
+      }
+    }
+    return sum;
+  }
+
   const currentContext = useContext(AppContextNew);
   let color = currentContext.salespeople[id];
   const mainStyles = {
@@ -40,8 +53,7 @@ function ListItem({ name, id, onButtonClick }) {
         </svg>
         <label>
           {" "}
-          {name}:
-          <div style={shopCountStyles}>{currentContext.shopCount[id]}</div>
+          {name}:<div style={shopCountStyles}>{getShopCount()}</div>
         </label>
       </div>
     </li>

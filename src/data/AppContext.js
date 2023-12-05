@@ -58,19 +58,11 @@ export const populationData = CountySvgData.reduce(
   }),
   {}
 );
-const shopCountList = colors.reduce(
-  (acc, color, currentIndex) => ({
-    ...acc,
-    [currentIndex]: 0,
-  }),
-  {}
-);
 
 export const AppContextObject = {
   selectedSalesperson: 0,
   countyAssignment: countyAssignmentList,
   salespeople: salespersonList,
-  shopCount: shopCountList,
 };
 
 export const AppContextNew = createContext();

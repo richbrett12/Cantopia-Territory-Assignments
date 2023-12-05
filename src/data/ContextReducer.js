@@ -1,4 +1,3 @@
-import { populationData } from "./AppContext";
 import { CountySvgData } from "./CountySvgData";
 import { sampleCountyAssignment2 } from "./SampleData";
 
@@ -9,15 +8,9 @@ export default function contextReducer(context, action) {
         selectedSalesperson: action.id,
         countyAssignment: context.countyAssignment,
         salespeople: context.salespeople,
-        shopCount: context.shopCount,
       };
     }
     case "countySelect": {
-      updateShopCount(
-        action.countyName,
-        context.countyAssignment[action.countyName],
-        context.selectedSalesperson
-      );
       context.countyAssignment[action.countyName] = context.selectedSalesperson;
 
       return returnContextObject();
@@ -25,7 +18,6 @@ export default function contextReducer(context, action) {
     case "clearSelectedSalesperson": {
       CountySvgData.forEach((x) => {
         if (context.countyAssignment[x.County] === action.idToClear) {
-          updateShopCount(x.County, context.countyAssignment[x.County], 0);
           context.countyAssignment[x.County] = 0;
         }
       });
@@ -35,7 +27,6 @@ export default function contextReducer(context, action) {
     case "clearAllAssignments": {
       CountySvgData.forEach((x) => {
         if (context.countyAssignment[x.County] !== 0) {
-          updateShopCount(x.County, context.countyAssignment[x.County], 0);
           context.countyAssignment[x.County] = 0;
         }
       });
@@ -45,11 +36,6 @@ export default function contextReducer(context, action) {
     case "randomFill": {
       sampleCountyAssignment2.forEach((x) => {
         if (context.countyAssignment[x.countyName] !== x.salespersonId) {
-          updateShopCount(
-            x.countyName,
-            context.countyAssignment[x.countyName],
-            x.salespersonId
-          );
           context.countyAssignment[x.countyName] = x.salespersonId;
         }
       });
@@ -61,24 +47,11 @@ export default function contextReducer(context, action) {
     }
   }
 
-  function updateShopCount(countyName, oldAssignment, currentId) {
-    let oldId = JSON.parse(oldAssignment);
-    if (oldId !== currentId) {
-      if (currentId !== 0) {
-        context.shopCount[currentId] += populationData[countyName];
-      }
-      if (oldId !== 0) {
-        context.shopCount[oldId] -= populationData[countyName];
-      }
-    }
-  }
-
   function returnContextObject() {
     return {
       selectedSalesperson: context.selectedSalesperson,
       countyAssignment: context.countyAssignment,
       salespeople: context.salespeople,
-      shopCount: context.shopCount,
     };
   }
 }
