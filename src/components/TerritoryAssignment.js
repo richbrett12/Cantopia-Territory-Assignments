@@ -1,14 +1,15 @@
 import React, { useReducer } from "react";
 import OhioSvg from "./Ohio";
 import SalespersonList from "./SalespersonList";
+
 import {
   AppContextNew,
   AppContextObject,
-  populationData,
+  salespersonColors,
 } from "../data/AppContext";
 import contextReducer from "../data/ContextReducer";
 
-function TerritoryAssignment() {
+function TerritoryAssignment({ currentSalespeople }) {
   const mainStyles = {
     padding: "25px",
   };
@@ -58,7 +59,10 @@ function TerritoryAssignment() {
     <AppContextNew.Provider value={currentState}>
       <div style={mainStyles}>
         <OhioSvg onCountySelect={handleCountySelect} />
-        <SalespersonList onSalespersonSelect={handleSalespersonSelect} />
+        <SalespersonList
+          currentSalespeople={currentSalespeople}
+          onSalespersonSelect={handleSalespersonSelect}
+        />
         <h5>Actions</h5>
         <button style={btnStyles} onClick={() => handleClear()}>
           Clear All
@@ -90,7 +94,7 @@ function TerritoryAssignment() {
         <h5>County Assignment</h5>
         {JSON.stringify(currentState.countyAssignment, null, 5)}
         <h5>Salespeople ID and Colors</h5>
-        {JSON.stringify(currentState.salespeople, null, 5)}
+        {JSON.stringify(salespersonColors, null, 5)}
       </div>
     </AppContextNew.Provider>
   );

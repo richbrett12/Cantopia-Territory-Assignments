@@ -7,7 +7,6 @@ export default function contextReducer(context, action) {
       return {
         selectedSalesperson: action.id,
         countyAssignment: context.countyAssignment,
-        salespeople: context.salespeople,
       };
     }
     case "countySelect": {
@@ -51,7 +50,6 @@ export default function contextReducer(context, action) {
     return {
       selectedSalesperson: context.selectedSalesperson,
       countyAssignment: context.countyAssignment,
-      salespeople: context.salespeople,
     };
   }
 }

@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { populationData } from "../data/AppContext";
+import { populationData, salespersonColors } from "../data/AppContext";
 import { AppContextNew } from "../data/AppContext";
 
 function ListItem({ name, id, onButtonClick }) {
@@ -16,7 +16,7 @@ function ListItem({ name, id, onButtonClick }) {
   }
 
   const currentContext = useContext(AppContextNew);
-  let color = currentContext.salespeople[id];
+  let color = salespersonColors[id];
   const mainStyles = {
     width: "350px",
     padding: "10px",

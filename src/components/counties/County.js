@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { AppContextNew } from "../../data/AppContext";
+import { AppContextNew, salespersonColors } from "../../data/AppContext";
 import "./County.css";
 
 function County({ d, countyName, onCountySelect }) {
@@ -7,7 +7,7 @@ function County({ d, countyName, onCountySelect }) {
 
   let assignment = currentContext.countyAssignment[countyName];
   let fillStyle = {
-    fill: currentContext.salespeople[assignment],
+    fill: salespersonColors[assignment],
   };
 
   function handleClick() {

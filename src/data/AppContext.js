@@ -29,25 +29,18 @@ const colors = [
   "url(##7FFF00-Line)", // Light Green
   "url(##FF00FF-Line)", // Bright Pink
   // "url(#Red-Checker)",
-  // "url(#DarkOrange-Checker)",
-  // "url(#Green-Checker)",
-  // "url(#Blue-Checker)",
-  // "url(#Gold-Checker)",
-  // "url(##800000-Checker)", //Maroon
-  // "url(#BlueViolet-Checker)",
-  // "url(##222831-Checker)", // Dark Gray
 ];
 
-const countyAssignmentList = CountySvgData.reduce(
-  (acc, county) => ({ ...acc, [county.County]: 0 }),
-  {}
-);
-
-const salespersonList = colors.reduce(
+export const salespersonColors = colors.reduce(
   (acc, color, currentIndex) => ({
     ...acc,
     [currentIndex]: color,
   }),
+  {}
+);
+
+const countyAssignmentList = CountySvgData.reduce(
+  (acc, county) => ({ ...acc, [county.County]: 0 }),
   {}
 );
 
@@ -62,7 +55,6 @@ export const populationData = CountySvgData.reduce(
 export const AppContextObject = {
   selectedSalesperson: 0,
   countyAssignment: countyAssignmentList,
-  salespeople: salespersonList,
 };
 
 export const AppContextNew = createContext();

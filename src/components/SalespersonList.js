@@ -1,8 +1,7 @@
 import React from "react";
 import ListItem from "./ListItem";
-import { sampleSalespeople } from "../data/SampleData";
 
-function SalespersonList({ onSalespersonSelect }) {
+function SalespersonList({ currentSalespeople, onSalespersonSelect }) {
   const mainStyles = {
     listStyle: "none",
     width: "350px",
@@ -13,7 +12,7 @@ function SalespersonList({ onSalespersonSelect }) {
     padding: "10px",
   };
 
-  const salespeopleList = sampleSalespeople.map((name, index) => {
+  const salespeopleList = currentSalespeople.map((name, index) => {
     return (
       <ListItem
         name={name}
