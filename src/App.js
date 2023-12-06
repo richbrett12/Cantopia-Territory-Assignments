@@ -26,7 +26,7 @@ function Home() {
 
 function App() {
   return (
-    <div className="App">
+    <div className="AppContainer">
       <Router>
         <Routes>
           <Route path="/" element={<Home />} />

@@ -1,38 +1,69 @@
-.App {
+.AppContainer {
   text-align: left;
+  padding: 20px;
+  min-width: 1080px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.MainContainer {
+  padding: 15px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.ContextTracker {
+  padding: 15px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+.SalespersonListContainer {
+  border: solid;
+  border-radius: 10px;
+  margin-top: 40px;
+}
+
+.SalespersonListTitle {
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  font-weight: bold;
+  font-style: italic;
+  background-color: black;
   color: white;
+  padding: 24px 20px;
+  margin: 0px;
+  border: 5px solid whitesmoke;
 }
 
-.App-link {
-  color: #61dafb;
+.SalespersonListContainer ul {
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  list-style: none;
+  max-height: 250px;
+  overflow: hidden;
+  overflow-y: scroll;
+  background: whitesmoke;
+  padding: 5px 10px;
+  margin: 0px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.ShopCount {
+  text-align: center;
+  font-weight: bold;
+}
+
+.SelectedSalespersonCard {
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  font-weight: bold;
+  background-color: Black;
+  color: white;
+  padding: 8px;
+  margin: 0px;
+  border: 5px solid whitesmoke;
+  text-align: center;
+}
+
+/* .NoSelectedSalespersonCard {
+  margin: 20px;
+} */
+
+.SelectedSalespersonCard h2 {
+  margin: 0px;
+  padding: 5px 5px 0px 5px;
 }

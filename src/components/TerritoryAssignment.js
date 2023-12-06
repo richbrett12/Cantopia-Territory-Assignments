@@ -1,29 +1,30 @@
+import "../App.css";
 import React, { useReducer } from "react";
 import OhioSvg from "./Ohio";
 import SalespersonList from "./SalespersonList";
+import Grid from "@mui/material/Unstable_Grid2";
 
-import {
-  AppContextNew,
-  AppContextObject,
-  salespersonColors,
-} from "../data/AppContext";
+import { AppContextNew, AppContextObject } from "../data/AppContext";
 import contextReducer from "../data/ContextReducer";
 
 function TerritoryAssignment({ currentSalespeople }) {
-  const mainStyles = {
-    padding: "25px",
-  };
-
   const btnStyles = {
     margin: "2px 10px",
   };
   const [currentState, dispatch] = useReducer(contextReducer, AppContextObject);
 
   function handleSalespersonSelect(id) {
-    dispatch({
-      type: "salespersonSelect",
-      id: id,
-    });
+    if (id !== currentState.selectedSalesperson) {
+      dispatch({
+        type: "salespersonSelect",
+        id: id,
+      });
+    } else {
+      dispatch({
+        type: "salespersonSelect",
+        id: 0,
+      });
+    }
   }
 
   function handleCountySelect(countyName) {
@@ -51,25 +52,30 @@ function TerritoryAssignment({ currentSalespeople }) {
       type: "randomFill",
     });
   }
-  function deselectSalesperson() {
-    handleSalespersonSelect(0);
-  }
 
   return (
     <AppContextNew.Provider value={currentState}>
-      <div style={mainStyles}>
-        <OhioSvg onCountySelect={handleCountySelect} />
-        <SalespersonList
-          currentSalespeople={currentSalespeople}
-          onSalespersonSelect={handleSalespersonSelect}
-        />
-        <h5>Actions</h5>
-        <button style={btnStyles} onClick={() => handleClear()}>
-          Clear All
-        </button>
-        <button style={btnStyles} onClick={handleRandomFill}>
-          Sample Fill
-        </button>
+      <div className="MainContainer">
+        <Grid container spacing={2}>
+          <Grid xs={4}>
+            <SalespersonList
+              currentSalespeople={currentSalespeople}
+              onSalespersonSelect={handleSalespersonSelect}
+            />
+          </Grid>
+          <Grid xs={8}>
+            <OhioSvg onCountySelect={handleCountySelect} />
+          </Grid>
+          <Grid xs={12}>
+            <h5>Actions</h5>
+            <button style={btnStyles} onClick={() => handleClear()}>
+              Clear All
+            </button>
+            <button style={btnStyles} onClick={handleRandomFill}>
+              Sample Fill
+            </button>
+          </Grid>
+        </Grid>
         <br />
         {currentState.selectedSalesperson !== 0 && (
           <div>
@@ -79,13 +85,10 @@ function TerritoryAssignment({ currentSalespeople }) {
             >
               Clear Selected
             </button>
-            <button style={btnStyles} onClick={deselectSalesperson}>
-              Deselect
-            </button>
           </div>
         )}
       </div>
-      <div style={mainStyles}>
+      {/* <div className="ContextTracker">
         <h4>Context Tracker</h4>
         <h5>Selected Saleperson</h5>
         {currentState.selectedSalesperson === -1
@@ -95,7 +98,7 @@ function TerritoryAssignment({ currentSalespeople }) {
         {JSON.stringify(currentState.countyAssignment, null, 5)}
         <h5>Salespeople ID and Colors</h5>
         {JSON.stringify(salespersonColors, null, 5)}
-      </div>
+      </div> */}
     </AppContextNew.Provider>
   );
 }

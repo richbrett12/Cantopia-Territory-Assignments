@@ -1,17 +1,12 @@
-import React from "react";
+import "../App.css";
+import { React, useContext } from "react";
 import ListItem from "./ListItem";
+import { AppContextNew, salespersonColors } from "../data/AppContext";
+import Grid from "@mui/material/Unstable_Grid2";
 
 function SalespersonList({ currentSalespeople, onSalespersonSelect }) {
-  const mainStyles = {
-    listStyle: "none",
-    width: "350px",
-    maxHeight: "200px",
-    overflow: "hidden",
-    overflowY: "scroll",
-    background: "whitesmoke",
-    padding: "10px",
-  };
-
+  const currentContext = useContext(AppContextNew);
+  let color = salespersonColors[currentContext.selectedSalesperson];
   const salespeopleList = currentSalespeople.map((name, index) => {
     return (
       <ListItem
@@ -23,9 +18,46 @@ function SalespersonList({ currentSalespeople, onSalespersonSelect }) {
   });
 
   return (
-    <div>
-      <h4>Select a Salesperson</h4>
-      <ul style={mainStyles}>{salespeopleList}</ul>
+    <div className="SalespersonListContainer">
+      {currentContext.selectedSalesperson === 0 ? (
+        <div className="NoSelectedSalespersonCard">
+          <h3 className="SalespersonListTitle">Select a Salesperson</h3>
+        </div>
+      ) : (
+        <div className="SelectedSalespersonCard">
+          <Grid container spacing={1}>
+            <Grid xs={12}>
+              <h2>
+                {currentSalespeople[currentContext.selectedSalesperson - 1]}
+              </h2>
+            </Grid>
+            <Grid xs={12}>
+              <div className="SelectedSvgContainer">
+                <svg
+                  width="95%"
+                  height="14px"
+                  style={{
+                    border: "1px solid white",
+                    background: "whitesmoke",
+                  }}
+                >
+                  <rect
+                    transform="scale(8.0)"
+                    x="0"
+                    y="0"
+                    width="100%"
+                    height="100%"
+                    style={{ fill: color }}
+                  />
+                </svg>
+              </div>
+            </Grid>
+            {/* <Grid xs={3}>Selected:</Grid> */}
+          </Grid>
+        </div>
+      )}
+
+      <ul>{salespeopleList}</ul>
     </div>
   );
 }
