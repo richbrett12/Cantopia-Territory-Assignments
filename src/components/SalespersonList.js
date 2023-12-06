@@ -3,6 +3,7 @@ import { React, useContext } from "react";
 import ListItem from "./ListItem";
 import { AppContextNew, salespersonColors } from "../data/AppContext";
 import Grid from "@mui/material/Unstable_Grid2";
+import CloseIcon from "@mui/icons-material/Close";
 
 function SalespersonList({ currentSalespeople, onSalespersonSelect }) {
   const currentContext = useContext(AppContextNew);
@@ -25,19 +26,31 @@ function SalespersonList({ currentSalespeople, onSalespersonSelect }) {
         </div>
       ) : (
         <div className="SelectedSalespersonCard">
-          <Grid container spacing={1}>
-            <Grid xs={12}>
+          <Grid container spacing={0}>
+            <Grid xs={11}>
               <h2>
                 {currentSalespeople[currentContext.selectedSalesperson - 1]}
               </h2>
             </Grid>
+            <Grid
+              xs={1}
+              display="flex"
+              justifyContent="center"
+              alignItems="center"
+            >
+              <CloseIcon
+                onClick={() =>
+                  onSalespersonSelect(currentContext.selectedSalesperson)
+                }
+              />
+            </Grid>
             <Grid xs={12}>
               <div className="SelectedSvgContainer">
                 <svg
-                  width="95%"
-                  height="14px"
+                  width="97%"
+                  height="10px"
                   style={{
-                    border: "1px solid white",
+                    //border: "1px solid white",
                     background: "whitesmoke",
                   }}
                 >

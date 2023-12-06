@@ -3,13 +3,16 @@ import React, { useReducer } from "react";
 import OhioSvg from "./Ohio";
 import SalespersonList from "./SalespersonList";
 import Grid from "@mui/material/Unstable_Grid2";
+import { Button } from "@mui/material";
 
 import { AppContextNew, AppContextObject } from "../data/AppContext";
 import contextReducer from "../data/ContextReducer";
 
 function TerritoryAssignment({ currentSalespeople }) {
   const btnStyles = {
-    margin: "2px 10px",
+    fontSize: "12px",
+    margin: "5px 5px",
+    //backgroundColor: "dimgrey",
   };
   const [currentState, dispatch] = useReducer(contextReducer, AppContextObject);
 
@@ -63,30 +66,47 @@ function TerritoryAssignment({ currentSalespeople }) {
               onSalespersonSelect={handleSalespersonSelect}
             />
           </Grid>
-          <Grid xs={8}>
+          <Grid xs={4} display="flex" justifyContent="start" alignItems="start">
             <OhioSvg onCountySelect={handleCountySelect} />
           </Grid>
-          <Grid xs={12}>
-            <h5>Actions</h5>
-            <button style={btnStyles} onClick={() => handleClear()}>
-              Clear All
-            </button>
-            <button style={btnStyles} onClick={handleRandomFill}>
-              Sample Fill
-            </button>
-          </Grid>
-        </Grid>
-        <br />
-        {currentState.selectedSalesperson !== 0 && (
-          <div>
-            <button
+          <Grid xs={4}></Grid>
+
+          <Grid xs={4} display="flex" justifyContent="space-between">
+            <Button
               style={btnStyles}
-              onClick={() => handleClear(currentState.selectedSalesperson)}
+              variant="contained"
+              onClick={handleRandomFill}
             >
-              Clear Selected
-            </button>
-          </div>
-        )}
+              Sample Fill
+            </Button>
+            <Button
+              style={btnStyles}
+              variant="contained"
+              onClick={() => handleClear()}
+            >
+              Clear Map
+            </Button>
+            {currentState.selectedSalesperson === 0 ? (
+              <Button
+                style={btnStyles}
+                variant="contained"
+                onClick={() => handleClear(currentState.selectedSalesperson)}
+                disabled
+              >
+                Clear Current
+              </Button>
+            ) : (
+              <Button
+                style={btnStyles}
+                variant="contained"
+                onClick={() => handleClear(currentState.selectedSalesperson)}
+              >
+                Clear Current
+              </Button>
+            )}
+          </Grid>
+          <Grid xs={4}></Grid>
+        </Grid>
       </div>
       {/* <div className="ContextTracker">
         <h4>Context Tracker</h4>

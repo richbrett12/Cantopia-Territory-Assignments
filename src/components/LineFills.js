@@ -5,7 +5,7 @@ function LineFills() {
     "Pink",
     "#00BFFF", // Light Blue
     "#7FFF00", // Light Green
-    "#222831", // Dark Grey
+    "#404040", // Dark Grey
     "#FF00FF",
     "Red",
     "DarkOrange",

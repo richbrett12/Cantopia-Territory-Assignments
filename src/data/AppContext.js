@@ -2,7 +2,7 @@ import { createContext } from "react";
 import { CountySvgData } from "./CountySvgData";
 
 const colors = [
-  "LightGray",
+  "#D8D8D8",
   "Red",
   "DarkOrange",
   "Green",
@@ -10,7 +10,7 @@ const colors = [
   "Gold",
   "#800000", //Maroon
   "BlueViolet",
-  "#222831", // Dark Gray
+  "#404040", // Dark Gray
   "url(#Red-Line)",
   "url(#DarkOrange-Line)",
   "url(#Green-Line)",
@@ -18,7 +18,7 @@ const colors = [
   "url(#Gold-Line)",
   "url(##800000-Line)", //Maroon
   "url(#BlueViolet-Line)",
-  "url(##222831-Line)", // Dark Gray
+  "url(##404040-Line)", // Dark Gray
   "Pink",
   "#00BFFF", // Light Blue
   "#7FFF00", // Light Green

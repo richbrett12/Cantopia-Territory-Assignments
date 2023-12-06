@@ -19,7 +19,7 @@ const OhioSvg = ({ onCountySelect }) => {
         width="400"
         height="360"
         transform="scale(1) rotate(5)"
-        viewBox="0 0 50 50"
+        viewBox="-2 0 50 50"
       >
         <defs id="defs3087" />
         <CheckerFills />
