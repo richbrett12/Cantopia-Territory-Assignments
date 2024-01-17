@@ -4,7 +4,7 @@ import OhioSvg from "./Ohio";
 import SalespersonList from "./SalespersonList";
 import Grid from "@mui/material/Unstable_Grid2";
 import { Button } from "@mui/material";
-import { useParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import * as Y from "yjs";
 import { WebrtcProvider } from "y-webrtc";
 
@@ -16,28 +16,33 @@ let provider = null;
 
 function TerritoryAssignment({ currentSalespeople }) {
   const [currentState, dispatch] = useReducer(ContextReducer, AppContextObject);
-  const { roomName } = useParams();
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const roomName = searchParams.get("room");
+  const missingRoomName = roomName === null || roomName === "";
 
   useEffect(() => {
-    if (!provider || provider.roomName !== roomName) {
-      if (provider) {
-        provider.destroy();
+    if (!missingRoomName) {
+      if (!provider || provider.roomName !== roomName) {
+        if (provider) {
+          provider.destroy();
+        }
+        ydoc = new Y.Doc();
+        provider = new WebrtcProvider(roomName, ydoc, {
+          password: "optional-room-password",
+        });
+
+        ydoc.getMap("countyAssignment");
+
+        dispatch({
+          type: "syncMapToContext",
+          ydoc: ydoc,
+        });
       }
-      ydoc = new Y.Doc();
-      provider = new WebrtcProvider(roomName, ydoc, {
-        password: "optional-room-password",
-      });
-
-      ydoc.getMap("countyAssignment");
-
-      dispatch({
-        type: "syncMapToContext",
-        ydoc: ydoc,
-      });
     }
 
     return () => {};
-  }, [roomName]);
+  }, [roomName, missingRoomName]);
 
   if (ydoc) {
     ydoc.on("update", () => {
@@ -95,56 +100,84 @@ function TerritoryAssignment({ currentSalespeople }) {
 
   return (
     <AppContextNew.Provider value={currentState}>
-      <span>
-        <strong>Room Name: </strong>
-        {roomName}
-      </span>
-      <div className="MainContainer">
-        <Grid container spacing={2}>
-          <Grid xs={4}>
-            <SalespersonList
-              currentSalespeople={currentSalespeople}
-              onSalespersonSelect={handleSalespersonSelect}
-            />
-          </Grid>
-          <Grid xs={4} display="flex" justifyContent="start" alignItems="start">
-            <OhioSvg onCountySelect={handleCountySelect} />
-          </Grid>
-          <Grid xs={4}></Grid>
+      {missingRoomName ? (
+        <span>
+          <h2>Cantopia Territory Assignments!</h2>
+          <strong>
+            Provide a Query String for Room Name (Key: "room")
+            <br />
+            <br />
+            e.g. (.../Cantopia-Territory-Assignments/?room=
+            <i>exampleRoomName</i>)
+          </strong>
+        </span>
+      ) : (
+        <>
+          <span>
+            <strong>Room Name: </strong>
+            {roomName}
+          </span>
+          <div className="MainContainer">
+            <Grid container spacing={2}>
+              <Grid xs={4}>
+                <SalespersonList
+                  currentSalespeople={currentSalespeople}
+                  onSalespersonSelect={handleSalespersonSelect}
+                />
+              </Grid>
+              <Grid
+                xs={4}
+                display="flex"
+                justifyContent="start"
+                alignItems="start"
+              >
+                <OhioSvg onCountySelect={handleCountySelect} />
+              </Grid>
+              <Grid xs={4}></Grid>
 
-          <Grid xs={4} display="flex" justifyContent="space-around">
-            <Button size="small" variant="contained" onClick={handleRandomFill}>
-              Sample Fill
-            </Button>
-            <Button
-              size="small"
-              variant="contained"
-              onClick={() => handleClear()}
-            >
-              Clear Map
-            </Button>
-            {currentState.selectedSalesperson === 0 ? (
-              <Button
-                size="small"
-                variant="contained"
-                onClick={() => handleClear(currentState.selectedSalesperson)}
-                disabled
-              >
-                Clear Current
-              </Button>
-            ) : (
-              <Button
-                className="ActionButtons"
-                variant="contained"
-                onClick={() => handleClear(currentState.selectedSalesperson)}
-              >
-                Clear Current
-              </Button>
-            )}
-          </Grid>
-          <Grid xs={4}></Grid>
-        </Grid>
-      </div>
+              <Grid xs={4} display="flex" justifyContent="space-around">
+                <Button
+                  size="small"
+                  variant="contained"
+                  onClick={handleRandomFill}
+                >
+                  Sample Fill
+                </Button>
+                <Button
+                  size="small"
+                  variant="contained"
+                  onClick={() => handleClear()}
+                >
+                  Clear Map
+                </Button>
+                {currentState.selectedSalesperson === 0 ? (
+                  <Button
+                    size="small"
+                    variant="contained"
+                    onClick={() =>
+                      handleClear(currentState.selectedSalesperson)
+                    }
+                    disabled
+                  >
+                    Clear Current
+                  </Button>
+                ) : (
+                  <Button
+                    className="ActionButtons"
+                    variant="contained"
+                    onClick={() =>
+                      handleClear(currentState.selectedSalesperson)
+                    }
+                  >
+                    Clear Current
+                  </Button>
+                )}
+              </Grid>
+              <Grid xs={4}></Grid>
+            </Grid>
+          </div>
+        </>
+      )}
     </AppContextNew.Provider>
   );
 }

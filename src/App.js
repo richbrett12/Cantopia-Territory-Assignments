@@ -10,7 +10,7 @@ function App() {
       <Router>
         <Routes>
           <Route
-            path="/Cantopia-Territory-Assignments/:roomName"
+            path="/"
             element={
               <TerritoryAssignment currentSalespeople={sampleSalespeople} />
             }
