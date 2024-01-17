@@ -14,7 +14,9 @@ function Home() {
           {rooms.map((roomName) => {
             return (
               <li key={roomName}>
-                <Link to={`/${roomName}`}>{roomName}</Link>
+                <Link to={`/Cantopia-Territory-Assignments/${roomName}`}>
+                  {roomName}
+                </Link>
               </li>
             );
           })}
