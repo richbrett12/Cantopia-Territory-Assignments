@@ -1,20 +1,52 @@
 import "../App.css";
-import React, { useReducer } from "react";
+import React, { useEffect, useReducer } from "react";
 import OhioSvg from "./Ohio";
 import SalespersonList from "./SalespersonList";
 import Grid from "@mui/material/Unstable_Grid2";
 import { Button } from "@mui/material";
+import { useParams } from "react-router-dom";
+import * as Y from "yjs";
+import { WebrtcProvider } from "y-webrtc";
 
 import { AppContextNew, AppContextObject } from "../data/AppContext";
-import contextReducer from "../data/ContextReducer";
+import ContextReducer from "../data/ContextReducer";
+
+let ydoc = null;
+let provider = null;
 
 function TerritoryAssignment({ currentSalespeople }) {
-  const btnStyles = {
-    fontSize: "12px",
-    margin: "5px 5px",
-    //backgroundColor: "dimgrey",
-  };
-  const [currentState, dispatch] = useReducer(contextReducer, AppContextObject);
+  const [currentState, dispatch] = useReducer(ContextReducer, AppContextObject);
+  const { roomName } = useParams();
+
+  useEffect(() => {
+    if (!provider || provider.roomName !== roomName) {
+      if (provider) {
+        provider.destroy();
+      }
+      ydoc = new Y.Doc();
+      provider = new WebrtcProvider(roomName, ydoc, {
+        password: "optional-room-password",
+      });
+
+      ydoc.getMap("countyAssignment");
+
+      dispatch({
+        type: "syncMapToContext",
+        ydoc: ydoc,
+      });
+    }
+
+    return () => {};
+  }, [roomName]);
+
+  if (ydoc) {
+    ydoc.on("update", () => {
+      dispatch({
+        type: "syncMapToContext",
+        ydoc: ydoc,
+      });
+    });
+  }
 
   function handleSalespersonSelect(id) {
     if (id !== currentState.selectedSalesperson) {
@@ -34,6 +66,8 @@ function TerritoryAssignment({ currentSalespeople }) {
     dispatch({
       type: "countySelect",
       countyName: countyName,
+      salespersonId: currentState.selectedSalesperson,
+      ydoc: ydoc,
     });
   }
 
@@ -42,10 +76,12 @@ function TerritoryAssignment({ currentSalespeople }) {
       dispatch({
         type: "clearSelectedSalesperson",
         idToClear: id,
+        ydoc: ydoc,
       });
     } else {
       dispatch({
         type: "clearAllAssignments",
+        ydoc: ydoc,
       });
     }
   }
@@ -53,6 +89,7 @@ function TerritoryAssignment({ currentSalespeople }) {
   function handleRandomFill() {
     dispatch({
       type: "randomFill",
+      ydoc: ydoc,
     });
   }
 
@@ -71,16 +108,12 @@ function TerritoryAssignment({ currentSalespeople }) {
           </Grid>
           <Grid xs={4}></Grid>
 
-          <Grid xs={4} display="flex" justifyContent="space-between">
-            <Button
-              style={btnStyles}
-              variant="contained"
-              onClick={handleRandomFill}
-            >
+          <Grid xs={4} display="flex" justifyContent="space-around">
+            <Button size="small" variant="contained" onClick={handleRandomFill}>
               Sample Fill
             </Button>
             <Button
-              style={btnStyles}
+              size="small"
               variant="contained"
               onClick={() => handleClear()}
             >
@@ -88,7 +121,7 @@ function TerritoryAssignment({ currentSalespeople }) {
             </Button>
             {currentState.selectedSalesperson === 0 ? (
               <Button
-                style={btnStyles}
+                size="small"
                 variant="contained"
                 onClick={() => handleClear(currentState.selectedSalesperson)}
                 disabled
@@ -97,7 +130,7 @@ function TerritoryAssignment({ currentSalespeople }) {
               </Button>
             ) : (
               <Button
-                style={btnStyles}
+                className="ActionButtons"
                 variant="contained"
                 onClick={() => handleClear(currentState.selectedSalesperson)}
               >
@@ -108,17 +141,6 @@ function TerritoryAssignment({ currentSalespeople }) {
           <Grid xs={4}></Grid>
         </Grid>
       </div>
-      {/* <div className="ContextTracker">
-        <h4>Context Tracker</h4>
-        <h5>Selected Saleperson</h5>
-        {currentState.selectedSalesperson === -1
-          ? "None"
-          : currentState.selectedSalesperson}
-        <h5>County Assignment</h5>
-        {JSON.stringify(currentState.countyAssignment, null, 5)}
-        <h5>Salespeople ID and Colors</h5>
-        {JSON.stringify(salespersonColors, null, 5)}
-      </div> */}
     </AppContextNew.Provider>
   );
 }

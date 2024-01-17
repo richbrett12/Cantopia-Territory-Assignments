@@ -1,3 +1,4 @@
+import "../App.css";
 import React from "react";
 import CountyList from "./counties/CountyList";
 import CheckerFills from "./CheckerFills";
@@ -18,7 +19,6 @@ const OhioSvg = ({ onCountySelect }) => {
         xmlns="http://www.w3.org/2000/svg"
         width="400"
         height="360"
-        transform="scale(1) rotate(5)"
         viewBox="-2 0 50 50"
       >
         <defs id="defs3087" />

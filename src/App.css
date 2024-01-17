@@ -1,7 +1,7 @@
 .AppContainer {
   text-align: left;
   padding: 20px;
-  min-width: 1080px;
+  min-width: 1115px;
 }
 
 .MainContainer {
@@ -11,6 +11,11 @@
 .ContextTracker {
   padding: 15px;
 }
+
+/* #ActionButton {
+  font-size: 12px;
+  margin: 5px 5px;
+} */
 
 .SalespersonListContainer {
   border: solid;
@@ -59,12 +64,12 @@
   text-align: center;
 }
 
-/* .NoSelectedSalespersonCard {
-  margin: 20px;
-} */
-
 .SelectedSalespersonCard h2 {
   text-align: left;
   margin: 0px;
   padding: 5px 5px 0px 8px;
+}
+
+#OhioCountyMap {
+  transform: rotate(6deg);
 }

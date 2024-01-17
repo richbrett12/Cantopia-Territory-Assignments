@@ -39,7 +39,7 @@ export const salespersonColors = colors.reduce(
   {}
 );
 
-const countyAssignmentList = CountySvgData.reduce(
+export const emptyCountyAssignmentList = CountySvgData.reduce(
   (acc, county) => ({ ...acc, [county.County]: 0 }),
   {}
 );
@@ -54,7 +54,7 @@ export const populationData = CountySvgData.reduce(
 
 export const AppContextObject = {
   selectedSalesperson: 0,
-  countyAssignment: countyAssignmentList,
+  countyAssignment: emptyCountyAssignmentList,
 };
 
 export const AppContextNew = createContext();
