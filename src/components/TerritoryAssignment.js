@@ -95,6 +95,10 @@ function TerritoryAssignment({ currentSalespeople }) {
 
   return (
     <AppContextNew.Provider value={currentState}>
+      <span>
+        <strong>Room Name: </strong>
+        {roomName}
+      </span>
       <div className="MainContainer">
         <Grid container spacing={2}>
           <Grid xs={4}>
