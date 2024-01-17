@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/Cantopia-Territory-Assignments/static/css/main.a0b6ce4f.css",
-    "main.js": "/Cantopia-Territory-Assignments/static/js/main.32f8211a.js",
+    "main.js": "/Cantopia-Territory-Assignments/static/js/main.5f0d8342.js",
     "static/js/787.28cb0dcd.chunk.js": "/Cantopia-Territory-Assignments/static/js/787.28cb0dcd.chunk.js",
     "index.html": "/Cantopia-Territory-Assignments/index.html",
     "main.a0b6ce4f.css.map": "/Cantopia-Territory-Assignments/static/css/main.a0b6ce4f.css.map",
-    "main.32f8211a.js.map": "/Cantopia-Territory-Assignments/static/js/main.32f8211a.js.map",
+    "main.5f0d8342.js.map": "/Cantopia-Territory-Assignments/static/js/main.5f0d8342.js.map",
     "787.28cb0dcd.chunk.js.map": "/Cantopia-Territory-Assignments/static/js/787.28cb0dcd.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.a0b6ce4f.css",
-    "static/js/main.32f8211a.js"
+    "static/js/main.5f0d8342.js"
   ]
 }
