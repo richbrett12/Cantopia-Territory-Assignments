@@ -29,9 +29,9 @@ function App() {
     <div className="AppContainer">
       <Router>
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/Cantopia-Territory-Assignments/" element={<Home />} />
           <Route
-            path="/:roomName"
+            path="/Cantopia-Territory-Assignments/:roomName"
             element={
               <TerritoryAssignment currentSalespeople={sampleSalespeople} />
             }
